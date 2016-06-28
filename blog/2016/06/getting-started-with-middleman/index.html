@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Blog | Getting Started with Middleman</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blog/feed.xml" />
+
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Katie Garcia</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/blog">Blog</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+    <div id="main" role="main">
+
+      <div class="container">
+        <div class="col-md-8">
+          
+          <h1>Getting Started with Middleman</h1>
+
+          <div class="post-body">
+            <p>Hello blogland!</p>
+
+<p>Much like the shoemaker's children go barefoot, the web developer's personal site often suffers neglect. Wanting a blogging platform for pragmatic reasons, I knew I couldn't live with myself if I built yet another <em>*gasp*</em> Wordpress site. Having recently joined the cult of static site fanaticism, and curious about this one called Middleman, I present to you a fun Sunday evening project for weirdos and normals alike: how to create a Middleman blog.</p>
+
+<p></p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>As is often the case with these things, each install is going to require a slightly different subset of these steps, depending on your setup and what you do or do not already have configured on your machine. As is also often the case, you're going to get frustrated and I'm going to sound like a jerk when I fail to tell you to update homebrew. Again. Or whatever.</p>
+
+<p>Here's the general outline.</p>
+
+<ol>
+  <li>Install/update Ruby</li>
+  <li>Install Middleman</li>
+  <li>Initialize a Middleman site</li>
+  <li>Add blog functionality</li>
+  <li>Enhance blog features</li>
+  <li>Move blog to subdirectory</li>
+  <li>Voila! Done.</li>
+</ol>
+
+<h3 id="installupdate-ruby">Install/Update Ruby</h3>
+
+<p>I'm running a mac, so I pretty much googled <a href="http://code.tutsplus.com/tutorials/how-to-install-ruby-on-a-mac--net-21664" target="_blank">How to Install Ruby on a Mac</a> and followed this article.</p>
+
+<p>About halfway though, it has you update your bash profile. If you haven't already tricked out your bash profile, I highly recommend doing so. I usually start with <a href="https://natelandau.com/my-mac-osx-bash_profile/" target="_blank">Nate Landeau's bash profile</a> and then make it my own.</p>
+
+<p>If you're still following the Tutsplus tutorial, you can stop after Step 3. Everything about XCode and Rails and versioning are really specific to the use case and not necessary for a basic Middleman build. For what it's worth, I'm running Ruby 2.3.0 but that information will be obsolete in about 5 seconds.</p>
+
+<h3 id="install-middleman">Install Middleman</h3>
+<p>From there, I jumped over to the <a href="https://middlemanapp.com/" target="_blank">Middleman</a> site and followed their instructions. To start with you'll open your terminal and run:</p>
+
+<p><code>gem install middleman</code></p>
+
+<p>which installs the Middleman Ruby gem on your system. Now, you're able to use the <code>middleman</code> prompt to create any number of Middleman sites.</p>
+
+<h3 id="initialize-a-middleman-site">Initialize a Middleman site</h3>
+
+<p>Next, cd into whatever folder where you want to make your site. For me this means:</p>
+
+<p><code>cd /Users/USERNAME/Sites</code></p>
+
+<p>And then run this command to create your new site in a folder called <em>my_site</em>:</p>
+
+<p><code>middleman init my_site</code></p>
+
+<p>At the time of this writing, I got prompts asking if I wanted to activate livereload and compass and the answer is yes and yes! Technically, you don't <em>have</em> to, but then you'll miss out on all kinds of fun.</p>
+
+<p>Now you should see that a folder was created containing a source folder, a gemfile, and <em>config.rb</em> file. This means your basic site is up and running, so to see it you'll run:</p>
+
+<p><code>bundle exec middleman server</code></p>
+
+<p>And then visit http://localhost:4567/.</p>
+
+<p>If you just want a static site, you're done! Stop reading!</p>
+
+<h3 id="add-blog-functionality">Add blog functionality</h3>
+
+<p>This is where the <a href="https://middlemanapp.com/basics/blogging/" target="_blank">middleman documentation</a> forks a bit and it took some experimentation. You have to decide whether you want to create a new blog site, retrofit your static site with a blog, or some other combination of roundabout problem solving which is what I did. And thank goodness! Middleman documentation isn't totally clear, so I'm going to save you some grief.</p>
+
+<p>We're actually going to create a new site for the blog and then port over some of the features from our static site. At this time, the blog starter doesn't offer livereload and some of the features that the static starter does.</p>
+
+<p>First, we need to add the Middleman blog gem:</p>
+
+<p><code>gem install middleman-blog</code></p>
+
+<p>Then, navigate out of your <em>my_site</em> folder and let's create a <em>my_blog</em> site:</p>
+
+<p><code>middleman init my_blog --template=blog</code></p>
+
+<p>Now move into the folder:</p>
+
+<p><code>cd my_blog</code></p>
+
+<p>And run:</p>
+
+<p><code>bundle exec middleman server</code></p>
+
+<p>Now when you visit http://localhost:4567/, you should see an unstyled blog home page with one example post.</p>
+
+<h3 id="enhance-blog-features">Enhance blog features</h3>
+
+<p>We're going to take all the goodness from the static site you created and marry it with the blog.</p>
+
+<p>First, copy over all files from the source folder in <em>my_site</em> into the source folder in <em>my_blog</em> <strong>except</strong> <em>index.html.erb</em>.</p>
+
+<p>Next, copy over these lines from the gemfile in <em>my_site</em> and paste them into the gemfile in <em>my_blog</em>:</p>
+
+<pre>
+gem 'middleman-livereload'
+gem 'middleman-compass', '&gt;= 4.0.0'
+</pre>
+
+<p>Then, in the terminal, run:</p>
+
+<p><code>gem install middleman-livereload &amp;&amp; gem install middleman-compass</code></p>
+
+<p>Next, from <em>config.rb</em>, copy over the code that activates livereload. It should look something like this:</p>
+
+<pre>
+configure :development do
+  activate :livereload
+end
+</pre>
+
+<p>Finally, grab the code from the layout.erb file in <em>my_site</em> (this one is nested in the layouts folder) that references the font, stylesheet, and javascript and add it to the layout.erb file in <em>my_blog</em>. It should look like this, but obviously you can customize those later:</p>
+
+<pre>
+&lt;link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'&gt;
+
+&lt;%= stylesheet_link_tag :site %&gt;
+&lt;%= javascript_include_tag :all %&gt;
+</pre>
+
+<p>This step can be a little convoluted, but by comparing these two sites, you can learn a lot about what their disparate components do. Ideally by the end of this stage, your blog should be loading like it was at the end of the previous step, but now with some basic styles and livereload.</p>
+
+<h3 id="move-blog-to-subdirectory">Move blog to subdirectory</h3>
+
+<p>This may not apply to you, but I wanted my blog to live under /blog instead of in the root folder. This takes moving files and also customizing settings in config.rb.</p>
+
+<p>First, create your /blog subdirectory move the following files to it:</p>
+
+<ul>
+	<li>calendar.html.erb</li>
+	<li>index.html.erb</li>
+	<li>tag.html.erb</li>
+	<li>example post file</li>
+</ul>
+
+<p>Now we need to to update config.rb to reflect that we want the blog to serve from /blog. Update these three lines as follows:</p>
+
+<pre>
+# Set blog home to live at /blog
+blog.prefix = "blog"
+	
+# Set tag and calendar home to live at /blog/tags and /blog/date
+blog.tag_template = "blog/tag.html"
+blog.calendar_template = "blog/calendar.html"
+</pre>
+
+<p>Finally, we need to maintain separate <a href="https://middlemanapp.com/basics/layouts/" target="_blank">layout files</a> for our blog pages and our non-blog pages. Thankfully, we have both layout files already created from earlier steps. We just have to rename and rearrange them.</p>
+
+<p>First, find the <em>layout.erb</em> file that's in the root folder and rename it to <em>blog.erb</em>. Then move it into the <em>layouts</em> folder.</p>
+
+<p>Next, we're going to add this line to config.rb, which tells Middleman to use the blog.erb file as the layout for all pages in the /blog subdirectory:</p>
+
+<p><code>page "/blog/*", layout: :blog</code></p>
+
+<p>Now that your blog should be serving from /blog, your homepage may look pretty empty. Feel free to grab the index.html.erb from <em>my_site</em> and copy to <em>my_blog</em>.</p>
+
+<p>Now you should have a static page serving from http://localhost:4567/ and your blog homepage serving from http://localhost:4567/blog. You're ready to start writing!</p>
+
+<h3 id="optional-customization">Optional Customization</h3>
+
+<p>I chose to also add features including:</p>
+
+<ul>
+	<li>custom permalinks</li>
+	<li><a href="https://middlemanapp.com/basics/blogging/#article-summaries" target="_blank">summaries</a></li>
+	<li>header and footer <a href="https://middlemanapp.com/basics/partials/" target="_blank">partials</a></li>
+	<li>css and javascript minification</li>
+</ul>
+
+<p>Some of these are settings in config.rb. Others are pretty well documented already in the <a href="https://middlemanapp.com/basics/install/" target="_blank">Middleman docs</a> so I don't need to dive into them here.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>I'm just getting start with Middleman, but so far I'm pretty impressed with the ease of use plus extensibility. The documentation also feels really complete and generally easy to follow, so I was suprised at the gaps I found which prompted this post. Hopefully your experience has been even smoother and you're up and running without a hitch!</p>
+
+
+          </div>
+          
+        </div><!--.col-->
+        <div class="col-md-4">
+          <aside>
+            <h3>Recent Articles</h3>
+            <ol>
+                <li><a href="/blog/2016/06/36-or-more-hours-in-chiang-mai/">36...Or More Hours in Chiang Mai</a> <span>Jun 28</span></li>
+                <li><a href="/blog/2016/06/getting-started-with-middleman/">Getting Started with Middleman</a> <span>Jun 26</span></li>
+            </ol>
+
+            <h3>Tags</h3>
+            <ol>
+                <li><a href="/blog/tags/web-development/">web development (1)</a></li>
+                <li><a href="/blog/tags/middleman/">middleman (1)</a></li>
+                <li><a href="/blog/tags/travel/">travel (1)</a></li>
+                <li><a href="/blog/tags/thailand/">thailand (1)</a></li>
+            </ol>
+
+            <h3>By Year</h3>
+            <ol>
+                <li><a href="/blog/2016/">2016 (2)</a></li>
+            </ol>
+          </aside>
+        </div><!--.col-->
+
+      </div>
+    </div><!--#main-->
+
+    
+
+    <footer>
+	<div class="container">
+    <p>&copy; Katie Garcia 2014</p>
+	</div>
+</footer>
+  </body>
+</html>
